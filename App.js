@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, ToastAndroid, View } from 'react-native';
+import { Menu } from './src/menu';
 
 export default function App() {
+  const showToast = () =>{
+    ToastAndroid.show("Ingresastes a  nuestro simulador",ToastAndroid.SHORT);
+  }
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Menu />
     </View>
   );
 }
@@ -13,7 +16,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
