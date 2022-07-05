@@ -14,12 +14,25 @@ export function Simulador({route,navigation})
     var i=0;
 
 
-   function aumentarnumero()
+   function SiguientePregunta()
    {
-
-   setrespuestas({...respuestas, 'turespuesta':respuesta.turespuesta,'idrespuesta':respuesta.idpregunta});
-   console.log(respuestas);
+    var result = {
+        'turespuesta':respuesta.turespuesta,
+        'idrespuesta':respuesta.idpregunta
+    }
+   setrespuestas([... respuestas,result]);
+   
+   
     setnumero(numero+1);
+    if(numero >10)
+    {   
+    //    console.log("hola"+respuestas+"prueba");
+       rediregirResultado();
+    }
+   }
+   function rediregirResultado()
+   {
+    navigation.navigate('resultado',{preguntas:pregunta,resultados:respuestas});
    }
     useEffect(()=>{
         //utilizado para la api
@@ -36,18 +49,12 @@ export function Simulador({route,navigation})
     return(
         <View  style={style.frmsimulador}>
                 <Head
-                style={style.head} 
                 Nametest={test}
                  />
                 <View style={style.containerTest}>
                     <Text>{numero}</Text>
                     {
                         pregunta.map((pregunta)=>{
-                            //obtener el primer numero
-                            if(numero>50)
-                            {
-                                console.log("mayor que cincuenta");
-                            }
                              if( i==numero)
                             {
                                 i++;
@@ -66,7 +73,7 @@ export function Simulador({route,navigation})
                     
                     <Pressable
                         style={style.btnsiguiente}
-                        onPress={aumentarnumero}
+                        onPress={SiguientePregunta}
                     >
                         <Text
                         style={style.btnsiguienteText}
@@ -89,7 +96,8 @@ const style = StyleSheet.create({
     },
     btnsiguiente:{
         padding:20,
-        backgroundColor:"blue",
+        backgroundColor:"#307848",
+        textAlign:"center",
         border:20,
     },
     btnsiguienteText:{

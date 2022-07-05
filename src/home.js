@@ -1,5 +1,5 @@
 import { useEffect, useState} from "react";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, ImageBackground, ScrollView, StyleSheet, Text, View } from "react-native";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { Contratacion } from "./contratacion";
 
@@ -7,7 +7,8 @@ export function Home({navigation}) {
     const logo = require('./img/logo.png');
     const iconmenu =  require('./img/menu.png');
     const iconuser = require('./img/usuario.png');
-    
+    const img1 = require('./img/policia.jpg');
+    const img2 = require('./img/militar.jpg');
 
     const comenzarTest = ()=>{
         navigation.navigate('simulador',{test:'Simulador de la policia',Npregunta:0});
@@ -63,19 +64,36 @@ export function Home({navigation}) {
                 </View>
                 <ScrollView 
                 horizontal={true}//hacer el scroll horizontal
-                style={style.colbody_cursovideo}>
-                        <View style={style.colbody_video}> 
-                        <Text>vide01</Text>
-                        </View>
-                        <View style={style.colbody_video}> 
-                        <Text>vide02</Text>
-                        </View>
-                        <View style={style.colbody_video}> 
-                        <Text>vide03</Text>
-                        </View>
-                        <View style={style.colbody_video}> 
-                        <Text>vide04</Text>
-                        </View>
+                style={style.colbody_cursovideo}
+                imageStyle={{borderRadius:6}}
+                >
+                        <ImageBackground
+                            source={img1}
+                            style={style.colbody_video}
+                        > 
+                            <View style={style.titlevideo}>
+                             <Text style={style.titlevideo_text}>vide01</Text>
+                            </View>
+                            
+                        </ImageBackground>
+                        <ImageBackground 
+                            source={img2}
+                            style={style.colbody_video}
+                        > 
+                            <View style={style.titlevideo}>
+                             <Text style={style.titlevideo_text}>vide01</Text>
+                            </View>
+                        </ImageBackground>
+                        <ImageBackground style={style.colbody_video}> 
+                            <View style={style.titlevideo}>
+                             <Text style={style.titlevideo_text}>vide01</Text>
+                            </View>
+                        </ImageBackground>
+                        <ImageBackground style={style.colbody_video}> 
+                            <View style={style.titlevideo}>
+                             <Text style={style.titlevideo_text}>vide01</Text>
+                            </View>
+                        </ImageBackground>
                 </ScrollView>
                 <View style={style.colbody_titulo2video}>
                     <Text style={style.colbody_titulo2videotext}>
@@ -94,7 +112,10 @@ export function Home({navigation}) {
                             POLICÍA NACIONAL
                         </Text>
                     </Pressable>
-                    <Pressable style={style.colbody_listaopcion}>
+                    <Pressable 
+                        style={style.colbody_listaopcion}
+                        onPress={()=> Alert.alert("Escoja una opcion")}
+                    >
                         <Text style={style.colbody_listaopcion_text}>
                             EJERCITO
                         </Text>
@@ -186,8 +207,17 @@ const style = StyleSheet.create({
         width:"50%",
         height:40,
         backgroundColor:"#ef8930",
+        justifyContent:"center",
+        alignItems:"center",
+        borderRadius:5,
+        transform:[
+            {
+                translateX:40,
+            }
+        ]
     },
     colbody_btncursostext:{
+        fontSize:20,
         color:"white",
     },
     colbody_titulovideo:{
@@ -202,7 +232,8 @@ const style = StyleSheet.create({
     },
     colbody_cursovideo:{
         width:"100%",
-        height:"10%",
+        height:"15%",
+
     },
     colbody_video:{
         margin:10,
@@ -210,8 +241,11 @@ const style = StyleSheet.create({
         height:150,
         backgroundColor:'rgba(248, 153, 7 ,1)',
         borderRadius:20,
-        justifyContent:"center",
+        justifyContent:"flex-end",
         alignItems:'center',
+        overflow:"hidden",
+        borderColor:"rgba(210,206,206,0.96)",
+        borderWidth:3,
     },
     colbody_titulo2video:{
         width:"100%",
@@ -235,7 +269,7 @@ const style = StyleSheet.create({
         color:"white",
     },
     colbody_listasimulador:{
-        height:"35%",
+        height:"33%",
         backgroundColor:'rgba(194,157,137, 0.7)',
     },
     colbody_listaopcion:{

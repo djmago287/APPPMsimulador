@@ -7,6 +7,8 @@ import { Home } from "./home";
 import { Simulador } from "./simulador";
 import { Contratacion } from "./contratacion";
 import { Videos } from "./video";
+import { Resultado } from "./frmresultado";
+
 const stack = createNativeStackNavigator();
 export function Menu()
 {
@@ -38,6 +40,10 @@ export function Menu()
                     <stack.Screen 
                      name="video"
                      component={Videos}
+                    />
+                    <stack.Screen 
+                    name="resultado"
+                    component={Resultado}
                     />
                 </stack.Navigator>
             </NavigationContainer> 

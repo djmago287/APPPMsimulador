@@ -1,5 +1,5 @@
 import { Video } from "expo-av";
-import { Text , View } from "react-native";
+import { StyleSheet, Text , View } from "react-native";
 
 export function Videos()
 {
@@ -8,7 +8,7 @@ export function Videos()
             <Text>Video</Text>
            <Video
             source={{uri:'https://cenepsi.com/website/Img/video2.mp4'}} 
-            style={{ width: 500, height: 500 }}
+            style={style.video}
             rate={1.0}
                 volume={1.0}
                 isMuted={false}
@@ -21,3 +21,9 @@ export function Videos()
         </View>
     )
 }
+const style = StyleSheet .create({
+    video:{
+        width: 200,
+        height: 400,
+    },
+})
