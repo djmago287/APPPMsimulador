@@ -16,11 +16,10 @@ export function Home({navigation}) {
     const comenzarVideo = ()=>{
         navigation.navigate('video');
     }
-    const contratacion = ()=>{
-        console.log("moviendo contratacion");
-        navigation.navigate('contratacion');
+
+    const rediregir = (direccion) =>{
+        navigation.navigate(direccion);
     }
-   
      return(
         <View style={style.frmhome} >
             <View style={style.colhead}>
@@ -81,17 +80,17 @@ export function Home({navigation}) {
                             style={style.colbody_video}
                         > 
                             <View style={style.titlevideo}>
-                             <Text style={style.titlevideo_text}>vide01</Text>
+                             <Text style={style.titlevideo_text}>vide02</Text>
                             </View>
                         </ImageBackground>
                         <ImageBackground style={style.colbody_video}> 
                             <View style={style.titlevideo}>
-                             <Text style={style.titlevideo_text}>vide01</Text>
+                             <Text style={style.titlevideo_text}>vide03</Text>
                             </View>
                         </ImageBackground>
                         <ImageBackground style={style.colbody_video}> 
                             <View style={style.titlevideo}>
-                             <Text style={style.titlevideo_text}>vide01</Text>
+                             <Text style={style.titlevideo_text}>vide04</Text>
                             </View>
                         </ImageBackground>
                 </ScrollView>
@@ -128,7 +127,7 @@ export function Home({navigation}) {
                 </View>
                     <Pressable 
                         style={style.btncontratar}
-                        onPress={Contratacion}
+                        onPress={Contratacion()}
                     >
                         <Text>CONTRATAR CURSOS</Text>
                     </Pressable>
@@ -229,6 +228,19 @@ const style = StyleSheet.create({
     },
     colbody_titulovideotext:{
         color:"white",
+    },
+    titlevideo:{
+        width:"100%",
+        backgroundColor: "rgba(19,46,30,0.8)",
+        height:50,
+        borderRadius:5,
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center"
+    },
+    titlevideo_text:{
+        color:"#ef8930",
+        fontSize:18,
     },
     colbody_cursovideo:{
         width:"100%",

@@ -98,6 +98,8 @@ const style = StyleSheet.create({
         padding:20,
         backgroundColor:"#307848",
         textAlign:"center",
+        justifyContent:"center",
+        width:"80%",
         border:20,
     },
     btnsiguienteText:{

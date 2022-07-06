@@ -4,7 +4,7 @@ import { StyleSheet, Text , View } from "react-native";
 export function Videos()
 {
     return(
-        <View>
+        <View style={style.frmvideo}>
             <Text>Video</Text>
            <Video
             source={{uri:'https://cenepsi.com/website/Img/video2.mp4'}} 
@@ -22,8 +22,13 @@ export function Videos()
     )
 }
 const style = StyleSheet .create({
+    frmvideo:{
+        width:"100%",
+        justifyContent:"center",
+        alignItems:"center",
+    },
     video:{
-        width: 200,
-        height: 400,
+        width: "80%",
+        height: 200,
     },
 })
