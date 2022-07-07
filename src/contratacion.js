@@ -6,8 +6,25 @@ export function Contratacion()
 {
     return(
         <View style={style.frmcontratacion}>
+            <Head 
+                Nametest={'SERVICIOS'}
+            />
           <Text>holamundo</Text>
-
+          <View
+            style={style.box_paquetes}
+          >
+                <View
+                    style={style.paquete}
+                >
+                
+                </View>
+                <View
+                    style={style.paquete}
+                >
+                        <Text>TEXTO PARA LA DESCRIPCION</Text>
+                        <Text>Valor:</Text>
+                </View>
+          </View>
         </View>
     )
 
@@ -16,21 +33,15 @@ const style = StyleSheet.create({
     frmcontratacion:{
         flex:1,
         width:"100%",
-        backgroundColor:"red",
     },
+    box_paquetes:{
+        width:"100%",
+        height:"100%",
+    },
+    paquete:{
+        width:"90%",
+        height:"30%",
+        backgroundColor:"green",
+        margin:10,
+    }
 })
-
-const Paquete = (imagen,titulo, descripcion,valor)=>{
-        return(
-            <View>
-                <View>
-                    <Text>{titulo}</Text>
-                </View>
-                <View>
-                   <Text>TEXTO PARA LA DESCRIPCION</Text>
-                   <Text>Valor:</Text>
-
-                </View>
-            </View>
-        )
-}

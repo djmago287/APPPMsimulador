@@ -127,7 +127,9 @@ export function Home({navigation}) {
                 </View>
                     <Pressable 
                         style={style.btncontratar}
-                        onPress={Contratacion()}
+                        onPress={()=>{
+                            rediregir('contratacion')
+                        } }
                     >
                         <Text>CONTRATAR CURSOS</Text>
                     </Pressable>

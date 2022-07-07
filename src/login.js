@@ -1,10 +1,19 @@
+import { useState } from "react";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 export function  Login({navigation}) {
+    const [Usertext,setUsertext]=useState(null);
+    const [Passwordtext,setPasswordtext] = useState(null);
+    const [MensajeError,setMensajeError] = useState(null);
     const logo = require('./img/logo.png');
     const logear=()=>{
-        navigation.navigate('home');
+        if(Usertext == "12345" && Passwordtext == "12345"){
+            navigation.navigate('home');
+        }else{
+            console.log(Usertext);
+            setMensajeError("Contraseña o Usuario Incorrecto")
+        }   
     }
     return(
         <View style={style.frmlogin}>
@@ -24,12 +33,22 @@ export function  Login({navigation}) {
                 <TextInput
                     style={style.textinput}
                     placeholder="Usuario"
+                    onChangeText={(e)=>{
+                        setUsertext(e);
+                    }}  
                 />
                 <TextInput 
                     style={style.textinput}
                     secureTextEntry={true}
                     placeholder="Password"
+                    onChangeText={(e)=>{
+                        setPasswordtext(e);
+                    }}
                 />
+            
+                <Text>
+                    {MensajeError}
+                </Text>
                 <Pressable 
                 style={style.btnIngresar}
                 onPress={logear}
