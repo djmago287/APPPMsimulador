@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Calificacion } from "./component/calificacion";
 import { Head } from "./component/head";
 
 export function Resultado({route}) {
@@ -7,26 +8,29 @@ export function Resultado({route}) {
     //console.log(preguntas+"prueba");
     console.log(resultados);
     return (
-    <View
-        style={style.frmresultado}
-    >
-        <Head 
-            Nametest={"RESULTADO"}
-        /> 
-        <View
-          style={style.ViewResultado}   
-        >
-            {
-                resultados.map((resultados)=>{
-                    return (
-                            <Text key={resultados.idrespuesta} >{resultados.turespuesta}</Text>           
-                    );
-                })
-            }
-        </View>
-       
-    </View>);
+            <View
+                style={style.frmresultado}
+            >
+                <Head  Nametest={"RESULTADO"} /> 
+                <ScrollView
+                style={style.ViewResultado}   
+                >
+                    {
+                        resultados.map((resultados)=>{
+                        // if(resultados.turespuesta==resultados.preguntas.opcioncorrecta_pregunta)
+                            return (
+                                    <Calificacion 
+                                        key={resultados.pregunta.idpregunta}
+                                        resultado={resultados}
+                                        />
+                                );
+                        })
+                    }
+                </ScrollView>
+            </View>);
 }
+
+
 const style = StyleSheet.create({
     frmresultado:{
         flex:1,
@@ -34,8 +38,8 @@ const style = StyleSheet.create({
         backgroundColor:"white",
     },
     ViewResultado:{
-        backgroundColor:"green",
-        height:"90%"
+      //  backgroundColor:"green",
+        height:"80%"
     }
     
 })

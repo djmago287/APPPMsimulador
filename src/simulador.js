@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import { Overlay } from "@rneui/themed";
+
 import { Head } from "./component/head";
 import { Pregunta } from "./component/pregunta";
+import { Loading } from "./component/loading";
 
 
 export function Simulador({route,navigation})
 {
-    const gifcargar= require('./img/cargar.gif')
+
     const [respuestas,setrespuestas] = useState([]);
     const [respuesta,setrespuesta] = useState([]);
     const [pregunta,setpregunta] = useState([]);
@@ -20,19 +21,22 @@ export function Simulador({route,navigation})
 
    function SiguientePregunta()
    {
-    var result = {
-        'turespuesta':respuesta.turespuesta,
-        'idrespuesta':respuesta.idpregunta
-    }
-   setrespuestas([... respuestas,result]);
-   
-   
-    setnumero(numero+1);
-    if(numero >10)
-    {   
-    //    console.log("hola"+respuestas+"prueba");
-       rediregirResultado();
-    }
+        var result = {
+            'turespuesta':respuesta.turespuesta,
+            'idrespuesta':respuesta.idpregunta,
+            'pregunta':respuesta.Pregunta
+        }
+        //verificar si ka promise estavacio
+    //  console.log(result);
+            setrespuestas([... respuestas,result]);
+            console.log(respuestas)
+            setnumero(numero+1);
+            //solo me lee los 10 primero datos
+            if(numero ==10)
+            {   
+            //    console.log("hola"+respuestas+"prueba");
+            rediregirResultado();
+            }
    }
    function rediregirResultado()
    {
@@ -41,7 +45,6 @@ export function Simulador({route,navigation})
   
     useEffect(()=>{
         //utilizado para la api
-        
         fetch(API)
         .then(response => response.json())
         .then(data => {
@@ -49,11 +52,11 @@ export function Simulador({route,navigation})
                         setpregunta(data);                   
                       //  console.log(pregunta);
                     });
-        
-
+        console.log(respuestas)
     },[]);
     if(pregunta==""){   
         console.log("cargando");
+        return (<Loading></Loading>);
     }else{
         console.log("cargado");
        // setloading(false);
@@ -68,15 +71,9 @@ export function Simulador({route,navigation})
                 Nametest={test}
                  />
                 <View style={style.containerTest}>
-                   <Overlay
-                   isVisible={loading}
-                   >
-                    <Image 
-                        source={gifcargar}
-                    />   
-                   </Overlay>
+                   
                       
-                    <Text>{numero}</Text>
+                    <Text>{numero+1}</Text>
                     {
 
                         pregunta.map((pregunta)=>{

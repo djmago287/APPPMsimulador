@@ -1,4 +1,4 @@
-import { CheckBox } from "@rneui/themed";
+import { CheckBox } from "@rneui/themed";//componentes
 import { useState } from "react";
 import { Pressable, Text, View } from "react-native";
 
@@ -8,14 +8,14 @@ export function Pregunta({pregunta,respuesta,setrespuesta})
     const [check2,setcheck2] = useState(false);
     return (
         <View>
-            <Text>{pregunta.N_preguntas}</Text>
+            <Text>{pregunta.idpregunta}</Text>
             <Text>{pregunta.Detalle_pregunta}</Text>
             <CheckBox
              onPress={()=>{
                 if(check1==false){ 
                     setcheck1(!check1);
                     setcheck2(false);
-                    setrespuesta({'turespuesta':pregunta.opcion1_pregunta,'idpregunta':pregunta.idpregunta});
+                    setrespuesta({'turespuesta':pregunta.opcion1_pregunta,'idpregunta':pregunta.idpregunta,'Pregunta':pregunta});
                 }
                 }}
              title={pregunta.opcion1_pregunta}
@@ -26,7 +26,7 @@ export function Pregunta({pregunta,respuesta,setrespuesta})
                 if(check2==false){
                     setcheck2(!check2);
                     setcheck1(false);
-                    setrespuesta({'turespuesta':pregunta.opcion2_pregunta,'idpregunta':pregunta.idpregunta});
+                    setrespuesta({'turespuesta':pregunta.opcion2_pregunta,'idpregunta':pregunta.idpregunta,'Pregunta':pregunta});
                 }
              }}
              title={pregunta.opcion2_pregunta}
