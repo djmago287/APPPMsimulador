@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Overlay } from "@rneui/themed";
 import { Head } from "./component/head";
 import { Pregunta } from "./component/pregunta";
 
+
 export function Simulador({route,navigation})
 {
+    const gifcargar= require('./img/cargar.gif')
     const [respuestas,setrespuestas] = useState([]);
     const [respuesta,setrespuesta] = useState([]);
     const [pregunta,setpregunta] = useState([]);
     const [numero,setnumero] = useState(0);//variable de le numero de pregunta
+    const [loading,setloading] = useState(true);//variable para ver cargar
  
     const API = "http://cenepsi.com/APIseal/index.php?nametest=TEST MMPI 2";
     var i=0;
@@ -34,16 +38,28 @@ export function Simulador({route,navigation})
    {
     navigation.navigate('resultado',{preguntas:pregunta,resultados:respuestas});
    }
+  
     useEffect(()=>{
         //utilizado para la api
+        
         fetch(API)
         .then(response => response.json())
-        .then(data => {console.log(data[0]);
-                        setpregunta(data);
-                        console.log(pregunta);});
+        .then(data => {
+                 console.log(data[0]);
+                        setpregunta(data);                   
+                      //  console.log(pregunta);
+                    });
+        
 
     },[]);
-
+    if(pregunta==""){   
+        console.log("cargando");
+    }else{
+        console.log("cargado");
+       // setloading(false);
+    }
+    
+        
     const {test} =route.params;//obtener los parametros
 
     return(
@@ -52,8 +68,17 @@ export function Simulador({route,navigation})
                 Nametest={test}
                  />
                 <View style={style.containerTest}>
+                   <Overlay
+                   isVisible={loading}
+                   >
+                    <Image 
+                        source={gifcargar}
+                    />   
+                   </Overlay>
+                      
                     <Text>{numero}</Text>
                     {
+
                         pregunta.map((pregunta)=>{
                              if( i==numero)
                             {
