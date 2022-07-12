@@ -9,6 +9,8 @@ export function Home({navigation}) {
     const iconuser = require('./img/usuario.png');
     const img1 = require('./img/policia.jpg');
     const img2 = require('./img/militar.jpg');
+    const img3 = require('./img/militar2.webp');
+    const img4 = require('./img/militar3.jpg');
 
     const comenzarTest = ()=>{
         navigation.navigate('simulador',{test:'Simulador de la policia',Npregunta:0});
@@ -83,12 +85,18 @@ export function Home({navigation}) {
                              <Text style={style.titlevideo_text}>vide02</Text>
                             </View>
                         </ImageBackground>
-                        <ImageBackground style={style.colbody_video}> 
+                        <ImageBackground 
+                            style={style.colbody_video}
+                            source={img3}
+                        > 
                             <View style={style.titlevideo}>
                              <Text style={style.titlevideo_text}>vide03</Text>
                             </View>
                         </ImageBackground>
-                        <ImageBackground style={style.colbody_video}> 
+                        <ImageBackground 
+                            style={style.colbody_video}
+                            source={img4}
+                        > 
                             <View style={style.titlevideo}>
                              <Text style={style.titlevideo_text}>vide04</Text>
                             </View>
@@ -131,7 +139,7 @@ export function Home({navigation}) {
                             rediregir('contratacion')
                         } }
                     >
-                        <Text>CONTRATAR CURSOS</Text>
+                        <Text  style={style.btncontratar_text}>CONTRATAR CURSOS</Text>
                     </Pressable>
 
             </View>
@@ -157,6 +165,7 @@ const style = StyleSheet.create({
         borderColor:"white",
     },
     colhead_text:{
+        marginTop:20,
         color:"white",
     },
     colhead_iconuser:{
@@ -247,7 +256,6 @@ const style = StyleSheet.create({
     colbody_cursovideo:{
         width:"100%",
         height:"15%",
-
     },
     colbody_video:{
         margin:10,
@@ -299,9 +307,15 @@ const style = StyleSheet.create({
         fontSize:18,
     },
     btncontratar:{
+        borderRadius:10,
+        width:"100%",
         backgroundColor:"green",
         marginTop:-5,
         alignItems:"center",
+        justifyContent:"center",
         height:50,
-    }   
+    },
+    btncontratar_text:{
+        color:"white",
+    }
 })

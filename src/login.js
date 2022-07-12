@@ -65,8 +65,9 @@ export function  Login({navigation}) {
 }
 const style = StyleSheet.create({
     titulologin:{
+       
         color:"#0E6040",
-        fontSize:50,
+        fontSize:40,
         fontFamily: 'sans-serif-light',
         fontWeight: 'normal',
         padding:5,
@@ -94,6 +95,7 @@ const style = StyleSheet.create({
         borderBottomLeftRadius:100,
     },
     logologin:{
+        marginTop:50,
         width:"60%",
         height:200,
         resizeMode:'contain',//resize que la imagen se ajuste al tamaño del contenedo

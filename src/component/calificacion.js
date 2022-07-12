@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { CheckBox } from "@rneui/themed";//componentes
 import { useEffect, useState } from "react";
 
-export function Calificacion({resultado})
+export function Calificacion({resultado,NumeroPregunta})
 {
     const [check1,setcheck1] = useState(false);
     const [check2,setcheck2] = useState(false);
@@ -30,6 +30,7 @@ export function Calificacion({resultado})
     }
     return(
         <View>
+            <Text>{NumeroPregunta}.-</Text>
             <Text>{resultado.pregunta.Detalle_pregunta}</Text>
             <View style={style.opcion}>
                 <CheckBox
@@ -37,6 +38,7 @@ export function Calificacion({resultado})
                     checked={check1}
                 />
                 <Image 
+                style={style.opcion_icon}
                 source={respuesta}
                 />
                
@@ -47,6 +49,7 @@ export function Calificacion({resultado})
                     checked={check2}
                 />
                <Image 
+                style={style.opcion_icon}
                 source={respuesta2}
                 />
             </View>
@@ -59,5 +62,9 @@ const style=StyleSheet.create({
     opcion:{
         flexDirection:"row",
         alignItems:"center"
+    },
+    opcion_icon:{
+        width:20,
+        height:20,
     }
 })

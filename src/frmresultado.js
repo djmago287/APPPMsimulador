@@ -5,6 +5,7 @@ import { Head } from "./component/head";
 export function Resultado({route}) {
     const {preguntas} = route.params;//traer los datos de las preguntas resultas
     const {resultados} = route.params;
+    var i=0;
     //console.log(preguntas+"prueba");
     console.log(resultados);
     return (
@@ -17,9 +18,11 @@ export function Resultado({route}) {
                 >
                     {
                         resultados.map((resultados)=>{
+                            i++;
                         // if(resultados.turespuesta==resultados.preguntas.opcioncorrecta_pregunta)
                             return (
                                     <Calificacion 
+                                        NumeroPregunta={i}
                                         key={resultados.pregunta.idpregunta}
                                         resultado={resultados}
                                         />
