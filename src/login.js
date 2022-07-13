@@ -107,6 +107,9 @@ const style = StyleSheet.create({
         fontSize:20,
         padding:10,
         marginTop:20,
+        borderRadius:10,
+        borderBottomWidth:0,
+        borderColor:"white",
     },
     btnIngresar:{
         alignItems:"center",

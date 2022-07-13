@@ -15,9 +15,7 @@ export function Home({navigation}) {
     const comenzarTest = ()=>{
         navigation.navigate('simulador',{test:'Simulador de la policia',Npregunta:0});
     }
-    const comenzarVideo = ()=>{
-        navigation.navigate('video');
-    }
+    
 
     const rediregir = (direccion) =>{
         navigation.navigate(direccion);
@@ -49,7 +47,7 @@ export function Home({navigation}) {
                         </View>
                         
                         <Pressable
-                            onPress={comenzarVideo} 
+                            onPress={()=>{rediregir('menumain')}} 
                             style={style.colbody_btncursos}
                         >
                             <Text style={style.colbody_btncursostext}>

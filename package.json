@@ -25,7 +25,8 @@
     "react-native-video": "^5.2.0",
     "react-native-video-controls": "^2.8.1",
     "react-native-web": "0.17.7",
-    "expo-updates": "~0.13.2"
+    "expo-updates": "~0.13.2",
+    "expo-linear-gradient": "~11.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

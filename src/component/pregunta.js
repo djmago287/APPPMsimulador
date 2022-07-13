@@ -1,14 +1,18 @@
 import { CheckBox } from "@rneui/themed";//componentes
 import { useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export function Pregunta({pregunta,respuesta,setrespuesta})
 {
     const [check1,setcheck1] = useState(false);
     const [check2,setcheck2] = useState(false);
     return (
-        <View>
-            <Text>{pregunta.idpregunta}</Text>
+        <View
+            style={style.boxpregunta}
+        >
+            {
+                //<Text>{pregunta.idpregunta}</Text>
+            }
             <Text>{pregunta.Detalle_pregunta}</Text>
             <CheckBox
              onPress={()=>{
@@ -38,3 +42,11 @@ export function Pregunta({pregunta,respuesta,setrespuesta})
     )
         
 }
+const style = StyleSheet.create({
+    boxpregunta:{
+        height:"60%",
+        borderColor:"green",
+        borderBottomWidth:5,
+        
+    }
+})

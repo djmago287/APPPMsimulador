@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { Head } from "./component/head";
 import { Pregunta } from "./component/pregunta";
@@ -13,12 +13,11 @@ export function Simulador({route,navigation})
     const [respuesta,setrespuesta] = useState([]);
     const [pregunta,setpregunta] = useState([]);
     const [numero,setnumero] = useState(0);//variable de le numero de pregunta
-    const [loading,setloading] = useState(true);//variable para ver cargar
- 
+
+    // la API
     const API = "http://cenepsi.com/APIseal/index.php?nametest=TEST MMPI 2";
     var i=0;
-
-
+    
    function SiguientePregunta()
    {
         var result = {
@@ -27,16 +26,23 @@ export function Simulador({route,navigation})
             'pregunta':respuesta.Pregunta
         }
         //verificar si ka promise estavacio
-    //  console.log(result);
-            setrespuestas([... respuestas,result]);
-            console.log(respuestas)
-            setnumero(numero+1);
-            //solo me lee los 10 primero datos
-            if(numero ==10)
-            {   
-            //    console.log("hola"+respuestas+"prueba");
-            rediregirResultado();
-            }
+        
+        if(!respuesta.turespuesta |  respuesta.turespuesta  ==""){
+            Alert.alert('Tiene que escojer una opcion');
+        }else{
+              //  console.log(result);
+              setrespuestas([... respuestas,result]);
+              console.log(respuestas)
+              setnumero(numero+1);
+              //solo me lee los 10 primero datos
+              if(numero >9)
+              {   
+              //    console.log("hola"+respuestas+"prueba");
+              rediregirResultado();
+              }
+              respuesta.turespuesta= "";
+        }
+      
    }
    function rediregirResultado()
    {
@@ -64,7 +70,7 @@ export function Simulador({route,navigation})
     
         
     const {test} =route.params;//obtener los parametros
-
+    const nexticon = require('./img/next.png');
     return(
         <View  style={style.frmsimulador}>
                 <Head
@@ -93,14 +99,20 @@ export function Simulador({route,navigation})
                         })
                     }
                     
-                    <Pressable
-                        style={style.btnsiguiente}
-                        onPress={SiguientePregunta}
-                    >
-                        <Text
-                        style={style.btnsiguienteText}
-                        >Siguiente</Text>
-                    </Pressable>
+                    <View style={style.boxbtn}>
+                        <Pressable
+                            style={style.btnsiguiente}
+                            onPress={SiguientePregunta}
+                        >
+                            <Text
+                                style={style.btnsiguienteText}
+                            >Siguiente</Text>
+                            <Image
+                                style={style.btnsiguienteIcon} 
+                                source={nexticon} 
+                            />
+                        </Pressable>
+                    </View>
                 </View>
         </View>
     )
@@ -116,15 +128,29 @@ const style = StyleSheet.create({
         height:"90%",
         padding:10,
     },
+    boxbtn:{
+        width:"100%",
+        justifyContent:"center",
+        alignItems:"center",
+    },
     btnsiguiente:{
-        padding:20,
+        margin:5,
+        padding:10,
         backgroundColor:"#307848",
         textAlign:"center",
-        justifyContent:"center",
+        justifyContent:"space-between",
+        alignItems:"center",
         width:"80%",
+        height:60,
         border:20,
+        flexDirection:"row"
     },
     btnsiguienteText:{
         color:"white",
+        fontSize:15,
     },
+    btnsiguienteIcon:{
+        width:50,
+        height:50,
+    }
 })
